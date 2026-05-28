@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carnaval en Alta Mar — La fiesta donde el océano nunca duerme</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --gold: #D4A853;
+    --gold-light: #F0C97A;
+    --navy: #050C1A;
+    --deep: #080F1E;
+    --ocean: #0A2040;
+    --teal: #0D8EA4;
+    --teal-light: #12B5CE;
+    --white: #F5F5F5;
+    --text-muted: #A0AEC0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(5,12,26,0.55);
+    border-bottom: 1px solid rgba(212,168,83,0.15);
+    transition: background .3s;
+  }
+
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--gold), var(--teal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    animation: logoPulse 4s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%,100% { filter: drop-shadow(0 0 6px rgba(212,168,83,0.4)); }
+    50%      { filter: drop-shadow(0 0 14px rgba(18,181,206,0.6)); }
+  }
+
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a {
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(245,245,245,.75);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--gold-light); }
+
+  .btn-header {
+    background: linear-gradient(135deg, var(--gold), #B8892A);
+    color: var(--navy) !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    letter-spacing: 1px;
+    transition: transform .2s, box-shadow .2s !important;
+    box-shadow: 0 0 18px rgba(212,168,83,0.35);
+  }
+  .btn-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 28px rgba(212,168,83,0.5) !important;
+  }
+
+  .menu-toggle { display: none; font-size: 1.4rem; cursor: pointer; color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(13,142,164,0.25) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 50% at 30% 20%, rgba(212,168,83,0.12) 0%, transparent 60%),
+      linear-gradient(180deg, #050C1A 0%, #061428 40%, #091D35 100%);
+  }
+
+  /* Animated wave lines */
+  .waves {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 220px;
+    overflow: hidden;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 120px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230A2040' fill-opacity='1' d='M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,53,1392,42.7L1440,32L1440,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    animation: waveMove 8s linear infinite;
+  }
+  .wave2 {
+    height: 90px;
+    opacity: .5;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230D8EA4' fill-opacity='0.3' d='M0,32L60,42.7C120,53,240,75,360,80C480,85,600,75,720,64C840,53,960,43,1080,48C1200,53,1320,75,1380,85.3L1440,96L1440,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    animation: waveMove 12s linear infinite reverse;
+  }
+  @keyframes waveMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Particles */
+  .particles { position: absolute; inset: 0; pointer-events: none; }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    padding: 0 24px;
+    animation: heroFadeIn 1.2s ease-out both;
+  }
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    animation: heroFadeIn 1s .2s both;
+  }
+
+  .hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: heroFadeIn 1s .4s both;
+  }
+  .hero-title span {
+    background: linear-gradient(135deg, var(--gold-light), var(--teal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(.9rem, 2vw, 1.15rem);
+    color: var(--text-muted);
+    margin-bottom: 38px;
+    line-height: 1.7;
+    animation: heroFadeIn 1s .6s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: heroFadeIn 1s .8s both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), #B8892A);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: 1.2px;
+    padding: 14px 34px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(212,168,83,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 36px rgba(212,168,83,0.55); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-weight: 600;
+    font-size: .85rem;
+    letter-spacing: 1.2px;
+    padding: 14px 34px;
+    border-radius: 50px;
+    border: 1px solid rgba(245,245,245,.35);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-outline:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-size: .65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.8;
+    font-size: .92rem;
+  }
+  .center { text-align: center; }
+  .center .section-desc { margin: 0 auto; }
+
+  /* ── STATS ── */
+  #stats {
+    background: linear-gradient(135deg, var(--ocean), #0B1E38);
+    padding: 60px 5%;
+    border-top: 1px solid rgba(212,168,83,.15);
+    border-bottom: 1px solid rgba(212,168,83,.15);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 2.6rem;
+    background: linear-gradient(135deg, var(--gold), var(--teal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label {
+    font-size: .75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--deep);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .about-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(212,168,83,.15);
+    border-radius: 16px;
+    padding: 22px;
+    transition: transform .2s, border-color .2s;
+  }
+  .about-card:hover { transform: translateY(-4px); border-color: rgba(212,168,83,.4); }
+  .about-card i { font-size: 1.4rem; color: var(--gold); margin-bottom: 10px; display: block; }
+  .about-card h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+  .about-card p { font-size: .78rem; color: var(--text-muted); line-height: 1.6; }
+
+  .about-visual {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--ocean), #0D2A48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(13,142,164,.3) 0%, transparent 70%);
+  }
+  .about-visual-inner {
+    text-align: center;
+    z-index: 1;
+  }
+  .about-visual-inner i { font-size: 5rem; color: rgba(212,168,83,.4); margin-bottom: 20px; display: block; }
+  .about-visual-inner p { color: var(--text-muted); font-size: .85rem; max-width: 200px; }
+
+  /* ── EXPERIENCES ── */
+  #experiences {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--navy) 100%);
+  }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 56px auto 0;
+  }
+  .exp-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    cursor: pointer;
+  }
+  .exp-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    border-color: rgba(212,168,83,.3);
+  }
+  .exp-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .3s;
+    background: rgba(212,168,83,.1);
+  }
+  .exp-card:hover .exp-img::after { opacity: 1; }
+
+  .exp-body { padding: 24px; }
+  .exp-price {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .exp-price span { font-size: .75rem; color: var(--text-muted); font-weight: 400; }
+  .exp-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  .exp-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
+  .exp-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, var(--gold), #B8892A);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: .78rem;
+    letter-spacing: 1px;
+    padding: 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .exp-btn:hover { opacity: .85; }
+
+  /* ── GALLERY ── */
+  #gallery {
+    background: var(--navy);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 56px auto 0;
+  }
+  .gal-item {
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--ocean);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    transition: transform .3s;
+  }
+  .gal-item:hover { transform: scale(1.03); z-index: 2; }
+  .gal-item.tall { grid-row: span 2; }
+  .gal-item.wide { grid-column: span 2; }
+  .gal-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5,12,26,.85) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .gal-item:hover .gal-overlay { opacity: 1; }
+  .gal-overlay span { font-size: .75rem; font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+
+  /* ── RESERVAS ── */
+  #reservas {
+    background: linear-gradient(135deg, #061428, #0A1E38);
+  }
+  .reservas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .form-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(212,168,83,.2);
+    border-radius: 24px;
+    padding: 40px;
+  }
+  .form-row { margin-bottom: 18px; }
+  .form-row label { display: block; font-size: .72rem; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: .85rem;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-row select option { background: var(--navy); }
+  .form-row textarea { height: 90px; resize: none; }
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: .88rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border: none;
+    cursor: pointer;
+  }
+  #confirmMsg {
+    display: none;
+    text-align: center;
+    padding: 18px;
+    background: rgba(13,142,164,.15);
+    border: 1px solid var(--teal);
+    border-radius: 12px;
+    color: var(--teal-light);
+    font-weight: 600;
+    margin-top: 16px;
+    font-size: .88rem;
+  }
+
+  .reservas-info h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+  .reservas-info p { color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; font-size: .9rem; }
+  .contact-items { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; }
+  .contact-item i { width: 38px; height: 38px; border-radius: 50%; background: rgba(212,168,83,.12); display: grid; place-items: center; color: var(--gold); font-size: .9rem; flex-shrink: 0; }
+  .contact-item span { font-size: .85rem; color: var(--text-muted); }
+
+  /* ── TESTIMONIOS ── */
+  #testimonios {
+    background: var(--deep);
+    overflow: hidden;
+  }
+  .testimonios-track {
+    display: flex;
+    gap: 24px;
+    margin-top: 56px;
+    animation: scrollLeft 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .testimonios-track:hover { animation-play-state: paused; }
+  .test-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    padding: 28px 32px;
+    width: 320px;
+    flex-shrink: 0;
+  }
+  .stars { color: var(--gold); font-size: .85rem; margin-bottom: 14px; }
+  .test-text { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+  .test-author { font-weight: 700; font-size: .82rem; }
+  .test-role { font-size: .72rem; color: var(--gold); }
+
+  /* ── CTA FINAL ── */
+  #cta {
+    background: linear-gradient(135deg, #0B1E38, #050C1A);
+    text-align: center;
+    padding: 120px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13,142,164,.2) 0%, transparent 65%);
+  }
+  #cta .section-title { font-size: clamp(2rem, 4vw, 3.2rem); position: relative; max-width: 700px; margin: 16px auto 28px; }
+  #cta .btn-primary { font-size: 1rem; padding: 16px 46px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 64px 5% 32px;
+    border-top: 1px solid rgba(212,168,83,.12);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1100px;
+    margin: 0 auto 48px;
+  }
+  .footer-brand p { color: var(--text-muted); font-size: .82rem; line-height: 1.8; margin: 14px 0 22px; }
+  .footer-socials { display: flex; gap: 12px; }
+  .footer-socials a {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,168,83,.25);
+    display: grid; place-items: center;
+    color: var(--text-muted);
+    font-size: .85rem;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h5 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: .88rem; margin-bottom: 18px; color: var(--white); }
+  .footer-col a { display: block; font-size: .8rem; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .75rem;
+    color: var(--text-muted);
+  }
+
+  /* Newsletter */
+  .newsletter { display: flex; gap: 8px; margin-top: 16px; }
+  .newsletter input {
+    flex: 1;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: .78rem;
+    outline: none;
+  }
+  .newsletter button {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: .78rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav a:not(.btn-header) { display: none; }
+    .menu-toggle { display: block; }
+    .about-grid, .reservas-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-visual { aspect-ratio: auto; min-height: 260px; }
+  }
+  @media (max-width: 600px) {
+    .exp-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .hero-btns { flex-direction: column; align-items: center; }
+  }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">⚓ Carnaval en Alta Mar</a>
+  <nav id="navMenu">
+    <a href="#about">Nosotros</a>
+    <a href="#experiences">Experiencias</a>
+    <a href="#gallery">Galería</a>
+    <a href="#testimonios">Reseñas</a>
+    <a href="#reservas" class="btn-header">Reservar Ahora</a>
+  </nav>
+  <span class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></span>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave wave2"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Entretenimiento Marítimo Premium</div>
+    <h1 class="hero-title">La experiencia más <span>exclusiva sobre el mar</span></h1>
+    <p class="hero-sub">"Vive la fiesta donde el océano nunca duerme."<br>Fiestas, eventos y experiencias inolvidables en alta mar.</p>
+    <div class="hero-btns">
+      <a href="#experiences" class="btn-primary">Ver Experiencias</a>
+      <a href="#reservas" class="btn-outline">Reservar Eventos</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num" data-target="500">0</div>
+      <div class="stat-label">Eventos Realizados</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="20000">0</div>
+      <div class="stat-label">Asistentes Felices</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="50">0</div>
+      <div class="stat-label">Alianzas Estratégicas</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="98">0</div>
+      <div class="stat-label">% Satisfacción</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <span class="section-label">¿Quiénes somos?</span>
+      <h2 class="section-title">Nacimos del mar<br>para darte lo mejor</h2>
+      <p class="section-desc">Carnaval en Alta Mar surgió de la pasión por combinar música, entretenimiento y el lujo del océano en experiencias únicas e irrepetibles.</p>
+      <div class="about-cards">
+        <div class="about-card reveal">
+          <i class="fas fa-rocket"></i>
+          <h4>Misión</h4>
+          <p>Crear experiencias memorables combinando música, entretenimiento y lujo marítimo.</p>
+        </div>
+        <div class="about-card reveal">
+          <i class="fas fa-crown"></i>
+          <h4>Visión</h4>
+          <p>Ser líderes en entretenimiento marítimo en Latinoamérica.</p>
+        </div>
+        <div class="about-card reveal">
+          <i class="fas fa-shield-halved"></i>
+          <h4>Seguridad</h4>
+          <p>Protocolos de seguridad de primer nivel en cada evento.</p>
+        </div>
+        <div class="about-card reveal">
+          <i class="fas fa-star"></i>
+          <h4>Servicio Premium</h4>
+          <p>Atención personalizada antes, durante y después del evento.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="about-visual-inner">
+        <i class="fas fa-ship"></i>
+        <p>Desde las aguas del Caribe hasta el Pacífico, nuestra flota te espera</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences">
+  <div class="center">
+    <span class="section-label">Nuestros Paquetes</span>
+    <h2 class="section-title">Experiencias diseñadas<br>para lo extraordinario</h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#0D2A48,#1A4A6E)">🌅</div>
+      <div class="exp-body">
+        <div class="exp-price">$280 <span>/ persona</span></div>
+        <div class="exp-name">Fiesta Sunset</div>
+        <p class="exp-desc">Celebra el atardecer con música, cócteles de autor y vistas panorámicas del horizonte.</p>
+        <a href="#reservas" class="exp-btn">Reservar</a>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#1A0A2E,#2D1A50)">🎭</div>
+      <div class="exp-body">
+        <div class="exp-price">$380 <span>/ persona</span></div>
+        <div class="exp-name">Carnaval Nocturno</div>
+        <p class="exp-desc">Una noche épica con DJ internacionales, espectáculo de fuego y barra libre premium.</p>
+        <a href="#reservas" class="exp-btn">Reservar</a>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#0A2520,#1A4A3A)">💼</div>
+      <div class="exp-body">
+        <div class="exp-price">Cotizar</div>
+        <div class="exp-name">Eventos Empresariales</div>
+        <p class="exp-desc">Team buildings, lanzamientos y celebraciones corporativas con un toque de exclusividad.</p>
+        <a href="#reservas" class="exp-btn">Cotizar</a>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#2A100A,#501A1A)">🎂</div>
+      <div class="exp-body">
+        <div class="exp-price">$450 <span>/ grupo</span></div>
+        <div class="exp-name">Cumpleaños VIP</div>
+        <p class="exp-desc">Decora, sorprende y celebra con un paquete completamente personalizado sobre el mar.</p>
+        <a href="#reservas" class="exp-btn">Reservar</a>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#0A1A30,#0A3050)">⛵</div>
+      <div class="exp-body">
+        <div class="exp-price">$320 <span>/ persona</span></div>
+        <div class="exp-name">Tour Premium</div>
+        <p class="exp-desc">Recorre islas y bahías privadas con guía experto, snorkel y gastronomía gourmet.</p>
+        <a href="#reservas" class="exp-btn">Reservar</a>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-img" style="background:linear-gradient(135deg,#0D0A28,#1A1050)">🎧</div>
+      <div class="exp-body">
+        <div class="exp-price">$420 <span>/ persona</span></div>
+        <div class="exp-name">Fiesta Electrónica</div>
+        <p class="exp-desc">La mejor electrónica en altamar. Sets en vivo, visuales 3D y producción de nivel mundial.</p>
+        <a href="#reservas" class="exp-btn">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="center">
+    <span class="section-label">Galería</span>
+    <h2 class="section-title">Momentos que <span style="color:var(--gold)">nunca olvidas</span></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gal-item tall" style="background:linear-gradient(135deg,#0D2A48,#1A4A6E)">🎸
+      <div class="gal-overlay"><span>DJ en Vivo</span></div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#1A0A2E,#2D1A50)">🌊
+      <div class="gal-overlay"><span>Alta Mar</span></div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#2A200A,#4A3810)">🌅
+      <div class="gal-overlay"><span>Sunset Mágico</span></div>
+    </div>
+    <div class="gal-item wide" style="background:linear-gradient(135deg,#0A2520,#1A4A3A)">🎉
+      <div class="gal-overlay"><span>Celebraciones</span></div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#200A0A,#401010)">🔥
+      <div class="gal-overlay"><span>Espectáculo</span></div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#050C1A,#0A1E38)">⛵
+      <div class="gal-overlay"><span>Nuestra Flota</span></div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#0D0A28,#1A1050)">💫
+      <div class="gal-overlay"><span>Luces Premium</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVAS -->
+<section id="reservas">
+  <div class="reservas-grid">
+    <div class="reservas-info reveal">
+      <span class="section-label">Reservas</span>
+      <h3>¿Listo para zarpar<br>hacia lo extraordinario?</h3>
+      <p>Completa el formulario y uno de nuestros asesores se comunicará contigo en menos de 24 horas para confirmar tu experiencia.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <span>+57 300 000 0000 — WhatsApp disponible</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>reservas@carnavalaltamar.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Cartagena, Colombia — Puerto de Salida Principal</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <div class="form-row">
+        <label>Nombre Completo</label>
+        <input type="text" id="fname" placeholder="Tu nombre">
+      </div>
+      <div class="form-row">
+        <label>Correo Electrónico</label>
+        <input type="email" id="femail" placeholder="tu@correo.com">
+      </div>
+      <div class="form-row">
+        <label>Fecha del Evento</label>
+        <input type="date" id="fdate">
+      </div>
+      <div class="form-row">
+        <label>Tipo de Evento</label>
+        <select id="ftype">
+          <option value="">Selecciona...</option>
+          <option>Fiesta Sunset</option>
+          <option>Carnaval Nocturno</option>
+          <option>Evento Empresarial</option>
+          <option>Cumpleaños VIP</option>
+          <option>Tour Premium</option>
+          <option>Fiesta Electrónica</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Número de Personas</label>
+        <input type="number" id="fguests" placeholder="Ej: 25" min="1">
+      </div>
+      <div class="form-row">
+        <label>Comentarios</label>
+        <textarea id="fcomment" placeholder="Cuéntanos más sobre tu evento..."></textarea>
+      </div>
+      <button class="btn-primary form-submit" onclick="submitForm()">Enviar Solicitud ✦</button>
+      <div id="confirmMsg">🎉 ¡Solicitud recibida! Te contactamos pronto para confirmar tu experiencia.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="center">
+    <span class="section-label">Testimonios</span>
+    <h2 class="section-title">Lo que dicen nuestros pasajeros</h2>
+  </div>
+  <div style="overflow:hidden; margin-top: 56px;">
+    <div class="testimonios-track" id="testimonioTrack">
+      <!-- Cards duplicated for infinite loop effect -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <span class="section-label">¿Estás listo?</span>
+  <h2 class="section-title">¿Listo para vivir el carnaval más épico del océano?</h2>
+  <a href="#reservas" class="btn-primary">Reserva Hoy ⚓</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#">⚓ Carnaval en Alta Mar</a>
+      <p>La empresa líder en entretenimiento marítimo. Creamos experiencias que combinan lujo, música y el infinito océano.</p>
+      <div class="footer-socials">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navegación</h5>
+      <a href="#about">Nosotros</a>
+      <a href="#experiences">Experiencias</a>
+      <a href="#gallery">Galería</a>
+      <a href="#testimonios">Reseñas</a>
+      <a href="#reservas">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h5>Paquetes</h5>
+      <a href="#experiences">Fiesta Sunset</a>
+      <a href="#experiences">Carnaval Nocturno</a>
+      <a href="#experiences">Eventos VIP</a>
+      <a href="#experiences">Tour Premium</a>
+      <a href="#experiences">Cumpleaños</a>
+    </div>
+    <div class="footer-col">
+      <h5>Newsletter</h5>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:12px;">Recibe ofertas y nuevas fechas en tu correo.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="tu@correo.com">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Carnaval en Alta Mar. Todos los derechos reservados.</span>
+    <span>Hecho con ♥ y mucho océano</span>
+  </div>
+</footer>
+
+<script>
+// ── Particles ──
+(function(){
+  const c = document.getElementById('particles');
+  const colors = ['rgba(212,168,83,', 'rgba(18,181,206,', 'rgba(255,255,255,'];
+  for(let i=0;i<40;i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random()*4+1;
+    const col = colors[Math.floor(Math.random()*colors.length)];
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      background:${col}${Math.random()*.6+.2});
+      animation-duration:${Math.random()*10+8}s;
+      animation-delay:${Math.random()*-15}s;
+    `;
+    c.appendChild(p);
+  }
+})();
+
+// ── Scroll Reveal ──
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.15});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// ── Counters ──
+const counters = document.querySelectorAll('[data-target]');
+const countObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    const suffix = target >= 98 ? '%' : '+';
+    let current = 0;
+    const inc = target/60;
+    const timer = setInterval(()=>{
+      current += inc;
+      if(current >= target){ el.textContent = target.toLocaleString()+suffix; clearInterval(timer); }
+      else el.textContent = Math.floor(current).toLocaleString()+suffix;
+    },25);
+    countObs.unobserve(el);
+  });
+},{threshold:.5});
+counters.forEach(c=>countObs.observe(c));
+
+// ── Testimonios ──
+const tests = [
+  {text:'"La mejor experiencia de fiesta que he vivido. El Carnaval Nocturno superó todas mis expectativas."',author:'María Gómez',role:'Empresaria — Bogotá'},
+  {text:'"Organizamos el evento de fin de año de nuestra empresa aquí. Absolutamente espectacular."',author:'Carlos Rueda',role:'Director de RRHH'},
+  {text:'"El sunset sobre el mar mientras sonaba música en vivo... imposible de describir con palabras."',author:'Valentina Torres',role:'Influencer de Viajes'},
+  {text:'"Celebré mis 30 años en altamar. Mis amigos aún hablan de esa noche meses después."',author:'Andrés Mejía',role:'Medellín'},
+  {text:'"Profesionalismo, lujo y diversión en un solo lugar. Volveré cada año."',author:'Sofía Castro',role:'Turista Internacional'},
+  {text:'"El equipo de Carnaval en Alta Mar es increíble. Cada detalle perfecto."',author:'Miguel Ángel Pérez',role:'Cartagena'},
+];
+
+function buildTestimonios(){
+  const track = document.getElementById('testimonioTrack');
+  const all = [...tests,...tests]; // duplicate for infinite scroll
+  all.forEach(t=>{
+    const card = document.createElement('div');
+    card.className = 'test-card';
+    card.innerHTML = `<div class="stars">★★★★★</div><p class="test-text">${t.text}</p><div class="test-author">${t.author}</div><div class="test-role">${t.role}</div>`;
+    track.appendChild(card);
+  });
+}
+buildTestimonios();
+
+// ── Form ──
+function submitForm(){
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  if(!name || !email){alert('Por favor completa nombre y correo.'); return;}
+  const data = {name,email,date:document.getElementById('fdate').value,type:document.getElementById('ftype').value,guests:document.getElementById('fguests').value,comment:document.getElementById('fcomment').value};
+  const saved = JSON.parse(localStorage.getItem('reservas')||'[]');
+  saved.push(data); localStorage.setItem('reservas',JSON.stringify(saved));
+  document.getElementById('confirmMsg').style.display='block';
+  setTimeout(()=>document.getElementById('confirmMsg').style.display='none',5000);
+}
+
+// ── Mobile Menu ──
+function toggleMenu(){
+  const nav = document.getElementById('navMenu');
+  nav.style.display = nav.style.display==='flex' ? 'none' : 'flex';
+  nav.style.flexDirection = 'column';
+  nav.style.position = 'absolute';
+  nav.style.top = '70px';
+  nav.style.right = '5%';
+  nav.style.background = 'rgba(5,12,26,.97)';
+  nav.style.padding = '20px 30px';
+  nav.style.borderRadius = '16px';
+  nav.style.border = '1px solid rgba(212,168,83,.2)';
+  nav.style.gap = '14px';
+}
+
+// ── Sticky header opacity ──
+window.addEventListener('scroll',()=>{
+  document.querySelector('header').style.background =
+    window.scrollY>60 ? 'rgba(5,12,26,0.95)' : 'rgba(5,12,26,0.55)';
+});
+</script>
+</body>
+</html>
